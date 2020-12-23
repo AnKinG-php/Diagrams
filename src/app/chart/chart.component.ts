@@ -69,31 +69,29 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
 
         let position = Number(d3.select("ng-scrollbar").attr('left'));
         d3.select(".axis_y")
-          .attr('transform', 'translate(' + (35 + position) + ',0)')
+          .attr('transform', 'translate(' + (35 + position) + ',0)');
 
+        setTimeout(() =>{
+          (d3.select('.ng-scrollbar-track').node() && !d3.select('.ng-scrollbar-track .scrollbar-bg').node()) ? this.addScrollbarTrack() : null;
+        }, 0);
   }
 
-  ngAfterViewInit(){
+  addScrollbarTrack(){
     d3.select('.ng-scrollbar-track')
       .insert("div",":first-child")
+      .attr("class", 'scrollbar-bg')
       .style("width", '100%')
       .style("height", "2px")
       .style("background", "#9393a8")
       .style("position", "absolute")
       .style("margin-left", "-3px")
       .style("margin-top", "2px")
+  }
+
+  ngAfterViewInit(){
 
     this.scrollSubscription = this.scrollbarRef.scrolled.pipe(
       map((event: any) => {
-
-        d3.select('.ng-scrollbar-track')
-          .insert("div",":first-child")
-          .style("width", '100%')
-          .style("height", "2px")
-          .style("background", "#9393a8")
-          .style("position", "absolute")
-          .style("margin-left", "-3px")
-          .style("margin-top", "2px")
 
         d3.select(".axis_y")
           .attr('transform', 'translate(' + (event.target.scrollLeft + 35) + ',0)')
