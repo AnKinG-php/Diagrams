@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background: #646883;
+}
+.chart_container {
+  margin: 50px 0 0 0;
+}
+.tick text {
+  color: #9393a8;
+  font-size: 13px;
+}
+.tick line {
+  display: none;
+}
+.chart_axis path {
+  display: none;
+}
+.arrow{
+  stroke-width:5;
+  stroke:#000;
+  stroke-dasharray:5, 5;
+}
+.ng-scrollbar-track {
+  height: 6px !important;
+}
+.ng-scrollbar-thumb {
+  background: #9393a8 !important;
+}
+
